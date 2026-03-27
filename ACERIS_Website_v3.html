@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ACERIS Technologies — AI Strategy. Built for the Way You Actually Work.</title>
+<meta name="description" content="ACERIS Technologies delivers strategy-first AI advisory and tooling for founders and small businesses. Start with the AI Readiness Diagnostic — free, 30 minutes, 5 slots per month.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --c-black:      #13141e;
+  --c-navy:       #1e2640;
+  --c-navy-2:     #232b47;
+  --c-blue:       #2563eb;
+  --c-blue-light: #5b8ef0;
+  --c-orange:     #f97316;
+  --c-white:      #ffffff;
+  --c-grey:       #e0e2e8;
+  --c-blue-dim:   rgba(37,99,235,0.12);
+  --c-blue-border:rgba(37,99,235,0.28);
+  --c-orange-dim: rgba(249,115,22,0.10);
+  --c-orange-bdr: rgba(249,115,22,0.30);
+  --c-white-10:   rgba(255,255,255,0.10);
+  --c-white-06:   rgba(255,255,255,0.06);
+  --c-white-04:   rgba(255,255,255,0.04);
+  --c-text:       #e8eaf2;
+  --c-muted:      rgba(232,234,242,0.45);
+  --c-faint:      rgba(232,234,242,0.18);
+  --c-border:     rgba(255,255,255,0.07);
+  --f-display: 'Playfair Display', Georgia, serif;
+  --f-sans:    'DM Sans', system-ui, sans-serif;
+  --f-mono:    'DM Mono', 'Courier New', monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px}
+body{background:var(--c-black);color:var(--c-text);font-family:var(--f-sans);font-weight:300;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;border:none;background:none;font:inherit}
+img{max-width:100%;display:block}
+ul{list-style:none}
+
+/* ── UTILS ── */
+.label{font-family:var(--f-mono);font-size:10px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:var(--c-muted)}
+.label-blue{color:var(--c-blue-light)}
+.label-orange{color:var(--c-orange)}
+
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--f-mono);font-size:10.5px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;border-radius:2px;transition:all .16s;white-space:nowrap;cursor:pointer}
+.btn-primary{padding:13px 26px;background:var(--c-blue);color:var(--c-white)}
+.btn-primary:hover{background:#1d4ed8;transform:translateY(-1px)}
+.btn-orange{padding:13px 26px;background:var(--c-orange);color:var(--c-white)}
+.btn-orange:hover{background:#ea6c0a;transform:translateY(-1px)}
+.btn-outline{padding:12px 24px;border:1px solid var(--c-border);color:var(--c-muted)}
+.btn-outline:hover{border-color:var(--c-blue-border);color:var(--c-blue-light)}
+.btn-ghost{padding:0;color:var(--c-muted);font-size:10px}
+.btn-ghost:hover{color:var(--c-text)}
+.btn-sm{padding:8px 16px;font-size:9.5px}
+
+/* ── SECTION BASE ── */
+.section{padding:100px 60px;border-top:1px solid var(--c-border)}
+.section:first-child{border-top:none}
+.section-alt{background:var(--c-navy)}
+.section-dark{background:var(--c-navy-2)}
+.section-tag{display:flex;align-items:center;gap:12px;margin-bottom:22px}
+.section-tag-num{font-family:var(--f-mono);font-size:9px;color:var(--c-faint);letter-spacing:.1em}
+.section-headline{font-family:var(--f-display);font-weight:700;font-size:clamp(34px,4.5vw,56px);line-height:1.08;letter-spacing:-.02em;color:var(--c-white)}
+.section-headline em{font-style:italic;color:var(--c-blue-light)}
+.section-headline .o{color:var(--c-orange)}
+
+/* ── NAV ── */
+#nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 60px;height:62px;background:rgba(19,20,30,.94);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--c-border)}
+.nav-logo{font-family:var(--f-mono);font-size:12px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--c-white);cursor:pointer}
+.nav-logo .dot{color:var(--c-blue)}
+.nav-center{display:flex;align-items:center;gap:0;list-style:none}
+.nav-center a{display:block;padding:0 16px;font-family:var(--f-mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--c-muted);transition:color .15s;line-height:62px}
+.nav-center a:hover,.nav-center a.active{color:var(--c-text)}
+.nav-center a.active{border-bottom:1px solid var(--c-blue)}
+.nav-right{display:flex;align-items:center;gap:12px}
+.nav-book{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;padding:8px 18px;border:1px solid var(--c-blue-border);border-radius:2px;color:var(--c-blue-light);transition:all .15s;cursor:pointer}
+.nav-book:hover{background:var(--c-blue-dim);border-color:var(--c-blue)}
+.nav-burger{display:none;flex-direction:column;gap:5px;padding:4px;cursor:pointer}
+.nav-burger span{display:block;width:22px;height:1.5px;background:var(--c-muted);transition:all .2s}
+
+/* ── SPA PAGES ── */
+.page{display:none;min-height:100vh;padding-top:62px;animation:fadeIn .3s ease}
+.page.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.85)}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+
+/* ── HERO ── */
+#hero{min-height:calc(100vh - 62px);display:flex;flex-direction:column;justify-content:flex-end;padding:0 60px 80px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;pointer-events:none}
+.hero-bg::before{content:'';position:absolute;inset:0;background-image:linear-gradient(var(--c-border) 1px,transparent 1px),linear-gradient(90deg,var(--c-border) 1px,transparent 1px);background-size:72px 72px;mask-image:radial-gradient(ellipse 70% 70% at 50% 40%,black 20%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 70% 70% at 50% 40%,black 20%,transparent 100%)}
+.hero-bg::after{content:'';position:absolute;bottom:-200px;left:-100px;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(37,99,235,.07) 0%,transparent 65%)}
+.hero-glow-orange{position:absolute;top:-150px;right:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(249,115,22,.05) 0%,transparent 65%);pointer-events:none}
+.hero-inner{position:relative;max-width:1000px}
+.hero-status{display:flex;align-items:center;gap:14px;margin-bottom:36px}
+.hero-status-dot{width:7px;height:7px;border-radius:50%;background:var(--c-blue);box-shadow:0 0 8px var(--c-blue);animation:pulse 2.4s ease-in-out infinite;flex-shrink:0}
+.hero-h1{font-family:var(--f-display);font-weight:700;font-size:clamp(64px,10.5vw,128px);line-height:.92;letter-spacing:-.03em;color:var(--c-white);margin-bottom:32px}
+.hero-h1 .line-2{display:block;padding-left:.08em}
+.hero-h1 em{font-style:italic;color:var(--c-blue-light)}
+.hero-sub{font-size:17px;font-weight:300;color:var(--c-muted);max-width:520px;line-height:1.7;margin-bottom:44px}
+.hero-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:60px}
+.hero-scarcity{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;padding:7px 14px;border:1px solid var(--c-orange-bdr);background:var(--c-orange-dim);border-radius:2px;color:var(--c-orange)}
+.hero-bottom-row{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:24px}
+.hero-launch-note{font-family:var(--f-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--c-faint)}
+.hero-scroll{display:flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--c-faint)}
+.hero-scroll svg{animation:bob 2s ease-in-out infinite}
+
+/* ── SERVICES ── */
+.services-intro{display:grid;grid-template-columns:1fr 1.6fr;gap:60px;align-items:start;margin-bottom:60px}
+.services-body{font-size:15px;color:var(--c-muted);line-height:1.8;padding-top:6px}
+.services-body strong{color:var(--c-text);font-weight:400}
+.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--c-border);border:1px solid var(--c-border);border-radius:4px;overflow:hidden}
+.service-card{background:var(--c-black);padding:32px 26px 28px;transition:background .2s;position:relative}
+.service-card:hover{background:var(--c-navy)}
+.service-card-bar{height:2px;background:var(--c-blue);margin-bottom:24px;width:32px}
+.service-icon{width:36px;height:36px;border-radius:4px;background:var(--c-blue-dim);border:1px solid var(--c-blue-border);display:flex;align-items:center;justify-content:center;color:var(--c-blue-light);margin-bottom:18px}
+.service-card h3{font-family:var(--f-display);font-weight:600;font-size:18px;line-height:1.2;color:var(--c-white);margin-bottom:10px}
+.service-card p{font-size:13px;color:var(--c-muted);line-height:1.65;margin-bottom:18px}
+.service-tag{font-family:var(--f-mono);font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--c-faint)}
+
+/* ── PROBLEM ── */
+.problem-headline{font-family:var(--f-display);font-weight:700;font-size:clamp(28px,4vw,50px);line-height:1.12;letter-spacing:-.02em;color:var(--c-white);margin-bottom:36px}
+.problem-headline em{font-style:italic;color:var(--c-blue-light)}
+.problem-2col{display:grid;grid-template-columns:1fr 1fr;gap:44px;margin-bottom:48px}
+.problem-2col p{font-size:15px;color:var(--c-muted);line-height:1.8}
+.problem-2col strong{color:var(--c-text);font-weight:400}
+.vs-table{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--c-border);border:1px solid var(--c-border);border-radius:4px;overflow:hidden}
+.vs-col{padding:32px 28px}
+.vs-col.bad{background:var(--c-black)}
+.vs-col.good{background:var(--c-navy-2)}
+.vs-col-label{font-family:var(--f-mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--c-faint);margin-bottom:20px}
+.vs-col.good .vs-col-label{color:var(--c-blue-light)}
+.vs-col ul li{font-size:13.5px;color:var(--c-muted);padding:7px 0;border-bottom:1px solid var(--c-border);display:flex;align-items:center;gap:10px}
+.vs-col ul li::before{content:'—';color:var(--c-faint);font-size:10px;flex-shrink:0}
+.vs-col.good ul li{color:var(--c-text)}
+.vs-col.good ul li::before{content:'✓';color:var(--c-blue)}
+
+/* ── METHOD ── */
+.method-top{display:grid;grid-template-columns:1fr 1.6fr;gap:60px;align-items:start;margin-bottom:56px}
+.method-body{font-size:15px;color:var(--c-muted);line-height:1.8;padding-top:6px}
+.method-body strong{color:var(--c-text);font-weight:400}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--c-border);border:1px solid var(--c-border);border-radius:4px;overflow:hidden}
+.step{background:var(--c-black);padding:36px 28px;position:relative;transition:background .2s}
+.step:hover{background:var(--c-navy)}
+.step-accent{height:2px;width:36px;background:var(--c-orange);margin-bottom:20px}
+.step-num{font-family:var(--f-mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--c-faint);margin-bottom:12px}
+.step h3{font-family:var(--f-display);font-weight:600;font-size:22px;color:var(--c-white);margin-bottom:12px}
+.step p{font-size:13.5px;color:var(--c-muted);line-height:1.7}
+
+/* ── PRODUCTS ── */
+.products-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:48px}
+.prod-card{border:1px solid var(--c-border);border-radius:6px;overflow:hidden;background:var(--c-black)}
+.prod-card-top{padding:36px;border-bottom:1px solid var(--c-border)}
+.prod-card-tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;padding:5px 12px;border-radius:2px;margin-bottom:20px}
+.tag-blue{background:var(--c-blue-dim);border:1px solid var(--c-blue-border);color:var(--c-blue-light)}
+.tag-orange{background:var(--c-orange-dim);border:1px solid var(--c-orange-bdr);color:var(--c-orange)}
+.prod-card-tag-dot{width:5px;height:5px;border-radius:50%;background:currentColor;flex-shrink:0}
+.prod-card-top h2{font-family:var(--f-display);font-weight:700;font-size:clamp(26px,3vw,38px);line-height:1.1;color:var(--c-white);margin-bottom:14px}
+.prod-card-top p{font-size:14px;color:var(--c-muted);line-height:1.75;margin-bottom:24px}
+.prod-card-top p strong{color:var(--c-text);font-weight:400}
+.prod-features{display:flex;flex-direction:column;gap:10px;margin-bottom:4px}
+.prod-feature{display:flex;align-items:flex-start;gap:10px}
+.prod-feature-check{width:18px;height:18px;border-radius:3px;background:var(--c-blue-dim);border:1px solid var(--c-blue-border);display:flex;align-items:center;justify-content:center;color:var(--c-blue-light);flex-shrink:0;margin-top:1px}
+.prod-feature-text{font-size:13px;color:var(--c-muted);line-height:1.5}
+.prod-feature-text strong{color:var(--c-text);font-weight:400}
+.prod-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--c-border);border-bottom:1px solid var(--c-border)}
+.prod-stats>div{padding:22px 24px;background:var(--c-black)}
+.prod-stat-num{font-family:var(--f-display);font-weight:700;font-size:36px;color:var(--c-blue);line-height:1;margin-bottom:6px}
+.prod-stat-num.orange{color:var(--c-orange)}
+.prod-stat-label{font-family:var(--f-mono);font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--c-faint);line-height:1.5;max-width:110px}
+.prod-card-bottom{padding:20px 36px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+
+/* ── SLC CARD CHIPS ── */
+.slc-card{background:var(--c-navy-2)}
+.slc-modules-preview{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:24px}
+.slc-chip{font-family:var(--f-mono);font-size:8.5px;letter-spacing:.07em;text-transform:uppercase;padding:5px 11px;border:1px solid var(--c-border);border-radius:2px;color:var(--c-faint);transition:border-color .15s,color .15s,background .15s;cursor:pointer}
+.slc-chip:hover{border-color:var(--c-orange-bdr);color:var(--c-orange);background:var(--c-orange-dim)}
+.slc-chip-more{border-color:var(--c-blue-border);color:var(--c-blue-light)}
+.slc-chip-more:hover{background:var(--c-blue-dim);border-color:var(--c-blue);color:var(--c-white)}
+.slc-module-count{font-family:var(--f-display);font-size:80px;font-weight:700;color:var(--c-orange);line-height:1;opacity:.14;position:absolute;bottom:-10px;right:20px;pointer-events:none;user-select:none}
+.slc-reveal-note{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.08em;color:var(--c-faint)}
+
+/* ── SLC EXPLORER PAGE ── */
+.slc-intro-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:60px;align-items:start;margin-bottom:70px}
+.slc-intro-right p{font-size:15px;color:var(--c-muted);line-height:1.8;margin-bottom:18px}
+.slc-intro-right strong{color:var(--c-text);font-weight:400}
+.slc-stage-badges{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
+.slc-stage-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:2px;font-family:var(--f-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase}
+.badge-s1{background:var(--c-orange-dim);border:1px solid var(--c-orange-bdr);color:var(--c-orange)}
+.badge-s2{background:var(--c-blue-dim);border:1px solid var(--c-blue-border);color:var(--c-blue-light)}
+.domain-section{margin-bottom:56px}
+.domain-header{display:flex;align-items:center;gap:16px;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid var(--c-border)}
+.domain-code{font-family:var(--f-mono);font-size:9px;letter-spacing:.18em;color:var(--c-faint);text-transform:uppercase}
+.domain-name{font-family:var(--f-display);font-weight:600;font-size:20px;color:var(--c-white)}
+.domain-count{font-family:var(--f-mono);font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--c-faint);margin-left:auto}
+.modules-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.module-card{background:var(--c-navy);border:1px solid var(--c-border);border-radius:4px;padding:20px;cursor:pointer;transition:border-color .18s,background .18s,transform .18s;position:relative}
+.module-card:hover{border-color:var(--c-blue-border);background:var(--c-navy-2);transform:translateY(-2px)}
+.module-card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.module-id{font-family:var(--f-mono);font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--c-faint)}
+.stage-badge{font-family:var(--f-mono);font-size:7.5px;letter-spacing:.12em;text-transform:uppercase;padding:3px 7px;border-radius:2px}
+.stage-1-badge{background:var(--c-orange-dim);border:1px solid var(--c-orange-bdr);color:var(--c-orange)}
+.stage-2-badge{background:var(--c-blue-dim);border:1px solid var(--c-blue-border);color:var(--c-blue-light)}
+.module-name{font-family:var(--f-sans);font-size:13.5px;font-weight:500;color:var(--c-white);margin-bottom:8px;line-height:1.3}
+.module-teaser{font-size:11.5px;color:var(--c-muted);line-height:1.55}
+.module-card-arrow{position:absolute;bottom:14px;right:14px;color:var(--c-faint);opacity:0;transition:opacity .15s}
+.module-card:hover .module-card-arrow{opacity:1}
+
+/* ── WHY ── */
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--c-border);border:1px solid var(--c-border);border-radius:4px;overflow:hidden;margin-top:44px}
+.why-item{background:var(--c-black);padding:32px 28px;transition:background .2s}
+.why-item:hover{background:var(--c-navy)}
+.why-item-num{font-family:var(--f-display);font-size:44px;font-weight:700;color:var(--c-blue);line-height:1;margin-bottom:14px}
+.why-item-num.o{color:var(--c-orange)}
+.why-item h4{font-family:var(--f-sans);font-size:14px;font-weight:500;color:var(--c-white);margin-bottom:8px}
+.why-item p{font-size:13px;color:var(--c-muted);line-height:1.65}
+.principle-bar{margin-top:56px;padding:44px 52px;border:1px solid var(--c-border);border-radius:4px;text-align:center}
+.principle-quote{font-family:var(--f-display);font-size:clamp(22px,3vw,38px);font-weight:600;line-height:1.2;letter-spacing:-.02em;color:var(--c-white);margin-bottom:16px}
+.principle-quote em{font-style:italic;color:var(--c-blue-light)}
+.principle-attr{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--c-faint)}
+
+/* ── ABOUT ── */
+.about-layout{display:grid;grid-template-columns:1fr 1.8fr;gap:80px;align-items:start}
+.about-left h2{font-family:var(--f-display);font-size:clamp(30px,4vw,48px);font-weight:700;line-height:1.1;letter-spacing:-.02em;color:var(--c-white);margin-top:16px}
+.about-right p{font-size:15px;color:var(--c-muted);line-height:1.82;margin-bottom:20px}
+.about-right strong{color:var(--c-text);font-weight:400}
+.about-principles{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:36px}
+.ap{background:var(--c-black);border:1px solid var(--c-border);border-radius:4px;padding:18px 20px;transition:border-color .15s}
+.ap:hover{border-color:var(--c-blue-border)}
+.ap-label{font-family:var(--f-mono);font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--c-blue-light);margin-bottom:8px}
+.ap p{font-size:12.5px;color:var(--c-muted);line-height:1.55;margin-bottom:0}
+
+/* ── INSIGHTS ── */
+.insights-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:40px;flex-wrap:wrap;gap:20px}
+.insights-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.insight-card{background:var(--c-navy);border:1px solid var(--c-border);border-radius:4px;padding:28px 26px;transition:border-color .2s,transform .2s;cursor:pointer}
+.insight-card:hover{border-color:var(--c-blue-border);transform:translateY(-2px)}
+.insight-cat{font-family:var(--f-mono);font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--c-blue-light);margin-bottom:14px}
+.insight-cat.o{color:var(--c-orange)}
+.insight-card h3{font-family:var(--f-display);font-size:20px;font-weight:600;color:var(--c-white);line-height:1.2;letter-spacing:-.01em;margin-bottom:10px}
+.insight-card p{font-size:12.5px;color:var(--c-muted);line-height:1.65;margin-bottom:20px}
+.insight-meta{font-family:var(--f-mono);font-size:8.5px;letter-spacing:.08em;color:var(--c-faint);text-transform:uppercase}
+
+/* ── CONTACT ── */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.contact-left h2{font-family:var(--f-display);font-weight:700;font-size:clamp(32px,4.5vw,56px);line-height:1.05;letter-spacing:-.02em;color:var(--c-white);margin-bottom:18px}
+.contact-left h2 em{font-style:italic;color:var(--c-orange)}
+.contact-left p{font-size:15px;color:var(--c-muted);line-height:1.75;max-width:420px;margin-bottom:32px}
+.contact-details{display:flex;flex-direction:column;gap:12px}
+.contact-detail-item{display:flex;align-items:center;gap:12px}
+.contact-detail-icon{width:32px;height:32px;border-radius:4px;background:var(--c-blue-dim);border:1px solid var(--c-blue-border);display:flex;align-items:center;justify-content:center;color:var(--c-blue-light);flex-shrink:0}
+.contact-detail-text{font-size:13.5px;color:var(--c-muted)}
+.contact-detail-text a{color:var(--c-text);transition:color .15s}
+.contact-detail-text a:hover{color:var(--c-blue-light)}
+.contact-form{background:var(--c-black);border:1px solid var(--c-border);border-radius:6px;padding:36px}
+.form-title{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--c-muted);margin-bottom:28px;padding-bottom:14px;border-bottom:1px solid var(--c-border)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-group{margin-bottom:16px}
+.form-group.full{grid-column:1 / -1}
+.form-label{font-family:var(--f-mono);font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--c-faint);display:block;margin-bottom:7px}
+.form-input,.form-select,.form-textarea{width:100%;background:var(--c-white-06);border:1px solid var(--c-border);border-radius:2px;padding:10px 14px;font-family:var(--f-sans);font-size:13.5px;font-weight:300;color:var(--c-text);outline:none;transition:border-color .15s,background .15s;-webkit-appearance:none}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--c-blue-border);background:var(--c-blue-dim)}
+.form-input::placeholder,.form-textarea::placeholder{color:var(--c-faint)}
+.form-select option{background:var(--c-navy);color:var(--c-text)}
+.form-textarea{resize:vertical;min-height:90px}
+.form-submit-row{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:6px;flex-wrap:wrap}
+.form-note{font-family:var(--f-mono);font-size:8.5px;letter-spacing:.08em;color:var(--c-faint)}
+#form-success{display:none;background:rgba(37,99,235,.08);border:1px solid var(--c-blue-border);border-radius:4px;padding:16px 18px;margin-top:14px;font-size:13px;color:var(--c-blue-light);line-height:1.5}
+
+/* ── FOOTER ── */
+footer{background:var(--c-navy-2);border-top:1px solid var(--c-border);padding:48px 60px 32px}
+.footer-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-brand{font-family:var(--f-mono);font-size:12px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--c-white);margin-bottom:10px}
+.footer-brand .dot{color:var(--c-blue)}
+.footer-tagline{font-size:12.5px;color:var(--c-muted);line-height:1.6;max-width:220px}
+.footer-col-title{font-family:var(--f-mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--c-faint);margin-bottom:16px}
+.footer-col ul{display:flex;flex-direction:column;gap:8px}
+.footer-col ul li a{font-size:12.5px;color:var(--c-muted);transition:color .15s;cursor:pointer}
+.footer-col ul li a:hover{color:var(--c-text)}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:24px;border-top:1px solid var(--c-border);flex-wrap:wrap;gap:14px}
+.footer-copy{font-family:var(--f-mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--c-faint)}
+.footer-note{font-family:var(--f-mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--c-faint)}
+
+/* ── MODULE MODAL ── */
+#module-modal-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(13,14,22,.82);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:24px}
+#module-modal-overlay.open{display:flex}
+#module-modal-box{background:var(--c-navy);border:1px solid var(--c-blue-border);border-radius:8px;max-width:600px;width:100%;max-height:90vh;overflow-y:auto;padding:40px;position:relative}
+.modal-close{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:4px;background:var(--c-white-06);border:1px solid var(--c-border);color:var(--c-muted);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .15s}
+.modal-close:hover{background:var(--c-white-10);color:var(--c-white)}
+.modal-module-id{font-family:var(--f-mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--c-faint);margin-bottom:8px}
+.modal-module-name{font-family:var(--f-display);font-weight:700;font-size:clamp(22px,3vw,30px);color:var(--c-white);line-height:1.1;margin-bottom:16px}
+.modal-badges{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap}
+.modal-desc{font-size:14.5px;color:var(--c-muted);line-height:1.8;margin-bottom:28px}
+.modal-features-title{font-family:var(--f-mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--c-faint);margin-bottom:14px}
+.modal-features{display:flex;flex-direction:column;gap:8px;margin-bottom:28px}
+.modal-feature{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--c-muted);line-height:1.5}
+.modal-feature::before{content:'→';color:var(--c-blue-light);flex-shrink:0;font-family:var(--f-mono);font-size:11px;margin-top:1px}
+.modal-ideal-for{background:var(--c-black);border:1px solid var(--c-border);border-radius:4px;padding:16px 18px;margin-bottom:28px}
+.modal-ideal-label{font-family:var(--f-mono);font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--c-faint);margin-bottom:6px}
+.modal-ideal-text{font-size:13px;color:var(--c-muted);line-height:1.55}
+.modal-footer{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+
+/* ── SLC WAITLIST MODAL ── */
+#waitlist-overlay{display:none;position:fixed;inset:0;z-index:600;background:rgba(13,14,22,.85);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:24px}
+#waitlist-overlay.open{display:flex}
+#waitlist-box{background:var(--c-navy-2);border:1px solid var(--c-orange-bdr);border-radius:8px;max-width:520px;width:100%;padding:44px;position:relative}
+.waitlist-close{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:4px;background:var(--c-white-06);border:1px solid var(--c-border);color:var(--c-muted);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .15s}
+#waitlist-success{display:none;text-align:center;padding:20px 0}
+#waitlist-success p{font-size:15px;color:var(--c-text);line-height:1.7;margin-bottom:8px}
+#waitlist-success small{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--c-faint)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  #nav{padding:0 24px}
+  .nav-center,.nav-right .nav-book{display:none}
+  .nav-burger{display:flex}
+  .section{padding:72px 24px}
+  .hero-h1{font-size:clamp(52px,14vw,80px)}
+  #hero{padding:0 24px 60px}
+  .services-grid,.steps{grid-template-columns:1fr 1fr}
+  .products-grid,.contact-grid,.about-layout,.services-intro,.method-top,.problem-2col{grid-template-columns:1fr}
+  .why-grid,.insights-grid{grid-template-columns:1fr 1fr}
+  .modules-grid{grid-template-columns:1fr 1fr}
+  footer{padding:40px 24px 24px}
+  .footer-top{grid-template-columns:1fr 1fr;gap:28px}
+  .slc-intro-grid{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .services-grid,.steps,.why-grid,.insights-grid,.modules-grid{grid-template-columns:1fr}
+  .vs-table,.form-row{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr}
+  .about-principles{grid-template-columns:1fr}
+  #module-modal-box{padding:28px}
+  #waitlist-box{padding:28px}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ NAV ══════════ -->
+<nav id="nav">
+  <div class="nav-logo" onclick="goTo('home')">ACERIS<span class="dot">.</span></div>
+  <ul class="nav-center">
+    <li><a href="#home" data-page="home" onclick="goTo('home')">Home</a></li>
+    <li><a href="#services" data-page="services" onclick="goTo('services')">Services</a></li>
+    <li><a href="#products" data-page="products" onclick="goTo('products')">Products</a></li>
+    <li><a href="#slc" data-page="slc" onclick="goTo('slc')">SLC Platform</a></li>
+    <li><a href="#about" data-page="about" onclick="goTo('about')">About</a></li>
+    <li><a href="#insights" data-page="insights" onclick="goTo('insights')">Insights</a></li>
+    <li><a href="#contact" data-page="contact" onclick="goTo('contact')">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <span class="nav-book" onclick="goTo('contact')">Book Diagnostic</span>
+    <button class="nav-burger" onclick="toggleMobileNav()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ══════════ PAGE: HOME ══════════ -->
+<div id="page-home" class="page">
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-glow-orange"></div>
+    <div class="hero-inner">
+      <div class="hero-status">
+        <span class="hero-status-dot"></span>
+        <span class="label label-blue">ACERIS Technologies &nbsp;·&nbsp; AI Strategy Advisory &nbsp;·&nbsp; Bangkok</span>
+      </div>
+      <h1 class="hero-h1">
+        Decide.
+        <span class="line-2"><em>Don't</em> guess.</span>
+      </h1>
+      <p class="hero-sub">
+        Strategy-first AI advisory for founders and business owners
+        who need AI to actually work — not just look impressive in a pitch.
+      </p>
+      <div class="hero-actions">
+        <span class="btn btn-primary" onclick="goTo('contact')">
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 5.5h9M5.5 1l4.5 4.5-4.5 4.5"/></svg>
+          Book free diagnostic
+        </span>
+        <span class="btn btn-outline" onclick="goTo('products')">See our products</span>
+      </div>
+      <div class="hero-bottom-row">
+        <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+          <span class="hero-scarcity">
+            <svg width="7" height="7" viewBox="0 0 7 7" fill="currentColor"><circle cx="3.5" cy="3.5" r="3.5"/></svg>
+            5 slots &nbsp;·&nbsp; April 2026
+          </span>
+          <span class="hero-launch-note">Campaign launch — April 7, 2026</span>
+        </div>
+        <span class="hero-scroll btn btn-ghost" onclick="goTo('services')">
+          Explore
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 1v10M2 7l4 4 4-4"/></svg>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats bar -->
+  <section style="padding:52px 60px;background:var(--c-navy);border-top:1px solid var(--c-border)">
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--c-border);border:1px solid var(--c-border);border-radius:4px;overflow:hidden">
+      <div style="background:var(--c-navy-2);padding:28px 24px">
+        <div style="font-family:var(--f-display);font-weight:700;font-size:42px;color:var(--c-orange);line-height:1;margin-bottom:8px">54</div>
+        <div class="label">SLC modules across 9 domains</div>
+      </div>
+      <div style="background:var(--c-navy-2);padding:28px 24px">
+        <div style="font-family:var(--f-display);font-weight:700;font-size:42px;color:var(--c-blue);line-height:1;margin-bottom:8px">5</div>
+        <div class="label">Diagnostic slots per month</div>
+      </div>
+      <div style="background:var(--c-navy-2);padding:28px 24px">
+        <div style="font-family:var(--f-display);font-weight:700;font-size:42px;color:var(--c-white);line-height:1;margin-bottom:8px">30</div>
+        <div class="label">Minutes to your AI roadmap</div>
+      </div>
+      <div style="background:var(--c-navy-2);padding:28px 24px">
+        <div style="font-family:var(--f-display);font-weight:700;font-size:42px;color:var(--c-orange);line-height:1;margin-bottom:8px">฿0</div>
+        <div class="label">Cost for the diagnostic. No catch.</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<!-- ══════════ PAGE: SERVICES ══════════ -->
+<div id="page-services" class="page">
+  <!-- Services -->
+  <section class="section">
+    <div class="section-tag">
+      <span class="section-tag-num">01</span>
+      <span class="label">What We Do</span>
+    </div>
+    <div class="services-intro">
+      <h2 class="section-headline">Four ways<br><em>ACERIS</em><br>works with you.</h2>
+      <p class="services-body">
+        Every engagement starts with the same question: <strong>what's actually wrong?</strong>
+        Not what AI could theoretically do for your industry — what's creating friction,
+        cost, or missed revenue in your specific business right now.
+        From that answer, we build or advise on exactly what you need and nothing you don't.
+      </p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-card-bar"></div>
+        <div class="service-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 5v3l2 2"/></svg>
+        </div>
+        <h3>AI Readiness<br>Diagnostic</h3>
+        <p>Free 30-minute session. We identify your top 1–2 AI priorities from how your business actually operates — not a template.</p>
+        <span class="service-tag">Free · 30 min</span>
+      </div>
+      <div class="service-card">
+        <div class="service-card-bar"></div>
+        <div class="service-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8h12M8 2l6 6-6 6"/></svg>
+        </div>
+        <h3>AI Strategy<br>Advisory</h3>
+        <p>Ongoing advisory for founders who want a thinking partner — not another vendor — as they integrate AI into operations and decisions.</p>
+        <span class="service-tag">Retainer</span>
+      </div>
+      <div class="service-card">
+        <div class="service-card-bar"></div>
+        <div class="service-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="12" height="9" rx="1"/><path d="M5 4V3a1 1 0 011-1h4a1 1 0 011 1v1"/><path d="M8 9v.01"/></svg>
+        </div>
+        <h3>SLC<br>Co-pilot Platform</h3>
+        <p>The Solopreneur Live Co-pilot. A 54-module AI platform configured from your diagnostic — not generic, yours. Launching April 7.</p>
+        <span class="service-tag">SaaS · April 7</span>
+      </div>
+      <div class="service-card">
+        <div class="service-card-bar"></div>
+        <div class="service-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 13L8 3l5 10"/><path d="M5.5 9h5"/></svg>
+        </div>
+        <h3>Tailored<br>Build</h3>
+        <p>Custom AI tooling built precisely for your workflow when off-the-shelf products don't fit. Scoped after the diagnostic.</p>
+        <span class="service-tag">Project-based</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem -->
+  <section class="section section-alt">
+    <div class="section-tag">
+      <span class="section-tag-num">02</span>
+      <span class="label">The Real Problem</span>
+    </div>
+    <h2 class="problem-headline">
+      Most AI advice starts with what's <em>possible.</em><br>
+      We start with what's wrong.
+    </h2>
+    <div class="problem-2col">
+      <p>The gap between those two things is where most AI projects fail. A tool that <strong>works perfectly</strong> in someone else's business can be completely wrong for yours — because it was never designed for your actual operations, your actual bottlenecks, your actual team.</p>
+      <p>ACERIS doesn't sell AI capabilities. We identify the right problem first. Then we decide whether AI is even the right answer. <strong>Sometimes it is. Sometimes a process change is cheaper and faster.</strong> That honesty is the whole service.</p>
+    </div>
+    <div class="vs-table">
+      <div class="vs-col bad">
+        <div class="vs-col-label">What most advisors do</div>
+        <ul>
+          <li>Lead with AI capabilities</li>
+          <li>Recommend tools by category</li>
+          <li>One-size playbooks</li>
+          <li>Measure implementation, not impact</li>
+          <li>Assume AI transformation is the goal</li>
+        </ul>
+      </div>
+      <div class="vs-col good">
+        <div class="vs-col-label">What ACERIS does</div>
+        <ul>
+          <li>Start with your actual operations</li>
+          <li>Identify the specific bottleneck first</li>
+          <li>Strategy configured to your context</li>
+          <li>Define what "working" means for you</li>
+          <li>Only build what moves the needle</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Method -->
+  <section class="section">
+    <div class="section-tag">
+      <span class="section-tag-num">03</span>
+      <span class="label">How We Work</span>
+    </div>
+    <div class="method-top">
+      <h2 class="section-headline">Three steps.<br>No ambiguity.</h2>
+      <p class="method-body">
+        Every engagement starts with <strong>Diagnose</strong> — even for clients who already know what they want.
+        We've found that the stated problem is rarely the actual problem. The session clarifies it. From there,
+        we either give you a strategy to act on independently, or we build it together.
+      </p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-accent"></div>
+        <div class="step-num">Step 01</div>
+        <h3>Diagnose</h3>
+        <p>Free 30-minute session. We map your operations — where time is lost, decisions are slow, the same problems keep appearing. We're looking for the specific problem worth solving.</p>
+      </div>
+      <div class="step">
+        <div class="step-accent"></div>
+        <div class="step-num">Step 02</div>
+        <h3>Prioritise</h3>
+        <p>From your diagnostic profile, we rank the top 1–2 AI opportunities by impact vs. effort. You leave with a written brief — not vague direction, but a specific, actionable path with clear success criteria.</p>
+      </div>
+      <div class="step">
+        <div class="step-accent"></div>
+        <div class="step-num">Step 03</div>
+        <h3>Build</h3>
+        <p>For clients who go further: the SLC co-pilot, configured automatically from your diagnostic. Or a tailored build scoped precisely to your workflow. Nothing generic is ever recommended.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<!-- ══════════ PAGE: PRODUCTS ══════════ -->
+<div id="page-products" class="page">
+  <section class="section section-alt">
+    <div class="section-tag">
+      <span class="section-tag-num">04</span>
+      <span class="label">Products</span>
+    </div>
+    <h2 class="section-headline">Two products.<br>One <em>starting point.</em></h2>
+
+    <div class="products-grid">
+      <!-- Diagnostic -->
+      <div class="prod-card">
+        <div class="prod-card-top">
+          <div class="prod-card-tag tag-blue"><span class="prod-card-tag-dot"></span>Live · Free · 5 slots/month</div>
+          <h2>AI Readiness<br>Diagnostic</h2>
+          <p>A <strong>30-minute strategy session</strong> to identify your top 1–2 AI priorities — not from a template, but from how your business actually operates today. You leave with a written profile, not a sales pitch.</p>
+          <ul class="prod-features">
+            <li class="prod-feature">
+              <div class="prod-feature-check"><svg width="9" height="9" viewBox="0 0 9 9" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1.5 4.5l2 2L7.5 2"/></svg></div>
+              <div class="prod-feature-text"><strong>Operational map</strong> — where AI fits and where it doesn't</div>
+            </li>
+            <li class="prod-feature">
+              <div class="prod-feature-check"><svg width="9" height="9" viewBox="0 0 9 9" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1.5 4.5l2 2L7.5 2"/></svg></div>
+              <div class="prod-feature-text"><strong>Top 1–2 AI priorities</strong> ranked by impact vs. complexity</div>
+            </li>
+            <li class="prod-feature">
+              <div class="prod-feature-check"><svg width="9" height="9" viewBox="0 0 9 9" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1.5 4.5l2 2L7.5 2"/></svg></div>
+              <div class="prod-feature-text"><strong>Written business profile</strong> you keep, regardless of next steps</div>
+            </li>
+            <li class="prod-feature">
+              <div class="prod-feature-check"><svg width="9" height="9" viewBox="0 0 9 9" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1.5 4.5l2 2L7.5 2"/></svg></div>
+              <div class="prod-feature-text"><strong>SLC configuration input</strong> — pre-configures your co-pilot if you proceed</div>
+            </li>
+          </ul>
+        </div>
+        <div class="prod-stats">
+          <div><div class="prod-stat-num">30</div><div class="prod-stat-label">Minutes per session</div></div>
+          <div><div class="prod-stat-num">5</div><div class="prod-stat-label">Slots per month</div></div>
+          <div><div class="prod-stat-num">฿0</div><div class="prod-stat-label">Cost. No catch.</div></div>
+        </div>
+        <div class="prod-card-bottom">
+          <span class="btn btn-primary" onclick="goTo('contact')">
+            <svg width="11" height="11" viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 5.5h9M5.5 1l4.5 4.5-4.5 4.5"/></svg>
+            Book your session
+          </span>
+          <span class="label">April 2026 · Limited</span>
+        </div>
+      </div>
+
+      <!-- SLC -->
+      <div class="prod-card slc-card">
+        <div class="prod-card-top" style="position:relative;overflow:hidden">
+          <div class="prod-card-tag tag-orange"><span class="prod-card-tag-dot"></span>Launching April 7, 2026</div>
+          <h2>Solopreneur<br>Live Co-pilot</h2>
+          <p>Not a chatbot. Not a generic AI tool. A <strong>54-module platform</strong> configured entirely from your diagnostic — built around your actual operations. Stage 1 activates your immediate priorities. Stage 2 builds the operating infrastructure around them.</p>
+          <div class="slc-modules-preview" id="slc-chips-preview">
+            <!-- Populated by JS -->
+          </div>
+          <span class="slc-module-count">54</span>
+        </div>
+        <div class="prod-stats">
+          <div><div class="prod-stat-num orange">54</div><div class="prod-stat-label">Modules across 9 domains</div></div>
+          <div><div class="prod-stat-num orange">2</div><div class="prod-stat-label">Stages — Launchpad + Ops Engine</div></div>
+          <div><div class="prod-stat-num orange">1</div><div class="prod-stat-label">Config source — your diagnostic</div></div>
+        </div>
+        <div class="prod-card-bottom">
+          <span class="btn btn-orange" onclick="openWaitlistModal()">
+            <svg width="11" height="11" viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 5.5h9M5.5 1l4.5 4.5-4.5 4.5"/></svg>
+            Join SLC waitlist
+          </span>
+          <span class="btn btn-outline btn-sm" onclick="goTo('slc')">Explore all 54 modules →</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<!-- ══════════ PAGE: SLC ══════════ -->
+<div id="page-slc" class="page">
+  <section class="section">
+    <div class="section-tag">
+      <span class="section-tag-num">SLC</span>
+      <span class="label">Platform Architecture</span>
+    </div>
+    <div class="slc-intro-grid">
+      <div>
+        <h2 class="section-headline">54 modules.<br>9 domains.<br><em>One</em> co-pilot.</h2>
+        <div class="slc-stage-badges">
+          <span class="slc-stage-badge badge-s1">● Stage 1 — Launchpad (12 modules)</span>
+          <span class="slc-stage-badge badge-s2">● Stage 2 — Ops Engine (42 modules)</span>
+        </div>
+      </div>
+      <div class="slc-intro-right">
+        <p>The Solopreneur Live Co-pilot is a <strong>54-module AI platform</strong> designed for founders and business owners who operate without the infrastructure of a large organisation. Every module serves a specific operational function.</p>
+        <p>Your AI Readiness Diagnostic pre-configures the platform — activating Stage 1 modules immediately relevant to your priorities. Stage 2 modules unlock progressively as your operations mature. <strong>Click any module to see its full specification.</strong></p>
+        <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap">
+          <span class="btn btn-orange btn-sm" onclick="openWaitlistModal()">Join Waitlist — April 7</span>
+          <span class="btn btn-outline btn-sm" onclick="goTo('contact')">Book Diagnostic First</span>
+        </div>
+      </div>
+    </div>
+    <!-- Domain grid generated by JS -->
+    <div id="slc-domain-grid"></div>
+  </section>
+</div>
+
+
+<!-- ══════════ PAGE: ABOUT ══════════ -->
+<div id="page-about" class="page">
+  <section class="section section-alt">
+    <div class="section-tag">
+      <span class="section-tag-num">05</span>
+      <span class="label">About ACERIS</span>
+    </div>
+    <div class="about-layout">
+      <div class="about-left">
+        <span class="label">Founded in Bangkok</span>
+        <h2>Strategy first.<br>Always.</h2>
+      </div>
+      <div class="about-right">
+        <p>ACERIS Technologies was built on a single observation: <strong>the biggest AI failures aren't technical — they're strategic.</strong> Businesses implement AI tools without understanding what problem they're solving. They measure the wrong things. They mistake activity for progress.</p>
+        <p>We exist to fix that. Every ACERIS engagement begins with diagnosis, not prescription. We don't walk into a conversation with a preferred tool or a pre-built playbook. We ask what's actually broken — and then we figure out whether AI is the right answer at all.</p>
+        <p>Sometimes it isn't. Sometimes the right answer is a process change, a decision framework, or a clearer org structure. <strong>That honesty is rare in the AI advisory space, and it's our entire value proposition.</strong></p>
+        <div class="about-principles">
+          <div class="ap">
+            <div class="ap-label">Principle 01</div>
+            <p>The right problem, correctly defined, is worth more than any tool.</p>
+          </div>
+          <div class="ap">
+            <div class="ap-label">Principle 02</div>
+            <p>Clarity about what "working" means must come before any implementation.</p>
+          </div>
+          <div class="ap">
+            <div class="ap-label">Principle 03</div>
+            <p>We only recommend what moves the needle for you specifically.</p>
+          </div>
+          <div class="ap">
+            <div class="ap-label">Principle 04</div>
+            <p>If AI isn't the answer, we'll say so. That's the service.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why ACERIS -->
+  <section class="section">
+    <div class="section-tag">
+      <span class="section-tag-num">06</span>
+      <span class="label">Why ACERIS</span>
+    </div>
+    <h2 class="section-headline">What makes the<br>difference.</h2>
+    <div class="why-grid">
+      <div class="why-item">
+        <div class="why-item-num">01</div>
+        <h4>Strategy before tools</h4>
+        <p>Every engagement begins with a diagnostic, not a product demo. We identify the problem before we recommend the solution.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-item-num o">02</div>
+        <h4>Configures to your context</h4>
+        <p>The SLC platform and advisory are shaped by your diagnostic — not a generic framework applied to your logo.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-item-num">03</div>
+        <h4>Honest when AI isn't the answer</h4>
+        <p>We tell you when a simpler solution exists. That saves you money, time, and the failure of a project that shouldn't have started.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-item-num o">04</div>
+        <h4>Founder-to-founder perspective</h4>
+        <p>We operate like the businesses we advise — with real constraints, real accountability, and no tolerance for outputs that don't matter.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-item-num">05</div>
+        <h4>Built for execution, not reporting</h4>
+        <p>Every deliverable is designed to drive a decision or action. We don't produce documents that look good but sit on shelves.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-item-num o">06</div>
+        <h4>Scarcity by design</h4>
+        <p>Five diagnostic slots per month. This isn't marketing — it's the constraint that keeps our advice at the quality level it needs to be.</p>
+      </div>
+    </div>
+    <div class="principle-bar">
+      <div class="principle-quote">"We don't sell AI capabilities.<br>We identify <em>the right problem</em> first."</div>
+      <div class="principle-attr">ACERIS Technologies — Operating Principle</div>
+    </div>
+  </section>
+</div>
+
+
+<!-- ══════════ PAGE: INSIGHTS ══════════ -->
+<div id="page-insights" class="page">
+  <section class="section">
+    <div class="insights-header">
+      <div>
+        <div class="section-tag">
+          <span class="section-tag-num">07</span>
+          <span class="label">Insights</span>
+        </div>
+        <h2 class="section-headline">What we're<br>thinking about.</h2>
+      </div>
+      <span class="btn btn-outline btn-sm">All articles →</span>
+    </div>
+    <div class="insights-grid">
+      <div class="insight-card">
+        <div class="insight-cat">Strategy</div>
+        <h3>Why most AI projects fail before they start</h3>
+        <p>The problem isn't the technology — it's the question. Most AI implementations begin with "what can AI do?" instead of "what's actually broken?"</p>
+        <div class="insight-meta">March 2026 · 5 min read</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-cat o">Operations</div>
+        <h3>The 20% of operations that deserve 80% of your AI budget</h3>
+        <p>Most founders automate the visible tasks. The highest-leverage opportunities are almost always in the decisions they don't realize they're making manually.</p>
+        <div class="insight-meta">February 2026 · 7 min read</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-cat">SLC Platform</div>
+        <h3>How the diagnostic pre-configures your co-pilot</h3>
+        <p>A walk-through of how 30 minutes of structured questions translate into a 54-module platform configured specifically for your operations.</p>
+        <div class="insight-meta">February 2026 · 6 min read</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-cat o">Decision-Making</div>
+        <h3>The difference between a decision framework and a decision crutch</h3>
+        <p>AI decision tools are only as good as the criteria you feed them. Here's how to set those criteria so you're getting clarity, not confirmation bias.</p>
+        <div class="insight-meta">January 2026 · 4 min read</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-cat">Finance</div>
+        <h3>Cash flow visibility: the AI application most founders overlook</h3>
+        <p>Revenue forecasting gets all the attention. The higher-value application is usually the 13-week rolling cash view that prevents surprises.</p>
+        <div class="insight-meta">January 2026 · 5 min read</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-cat o">Strategy</div>
+        <h3>When to say no to an AI project</h3>
+        <p>The most valuable thing an AI advisor can do is tell you when not to build. Here's the framework we use to make that call.</p>
+        <div class="insight-meta">December 2025 · 6 min read</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<!-- ══════════ PAGE: CONTACT ══════════ -->
+<div id="page-contact" class="page">
+  <section class="section section-alt">
+    <div class="section-tag">
+      <span class="section-tag-num">08</span>
+      <span class="label">Contact</span>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-left">
+        <h2>Let's talk about<br>what's <em>actually</em><br>the problem.</h2>
+        <p>The diagnostic is free, 30 minutes, and limited to 5 slots per month. If you're not ready to book yet, use the form to introduce yourself and we'll follow up.</p>
+        <div class="contact-details">
+          <div class="contact-detail-item">
+            <div class="contact-detail-icon">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="12" height="9" rx="1"/><path d="M1 4l6 5 6-5"/></svg>
+            </div>
+            <div class="contact-detail-text"><a href="mailto:contact@aceristechnologies.space">contact@aceristechnologies.space</a></div>
+          </div>
+          <div class="contact-detail-item">
+            <div class="contact-detail-icon">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="6" r="2.5"/><path d="M7 1C4.2 1 2 3.2 2 6c0 3.5 5 7 5 7s5-3.5 5-7c0-2.8-2.2-5-5-5z"/></svg>
+            </div>
+            <div class="contact-detail-text">Bangkok, Thailand &nbsp;·&nbsp; Remote globally</div>
+          </div>
+          <div class="contact-detail-item">
+            <div class="contact-detail-icon">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="6"/><path d="M7 4v3l2 2"/></svg>
+            </div>
+            <div class="contact-detail-text">Response within 24 hours</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="contact-form">
+          <div class="form-title">Book a Diagnostic / Send a Message</div>
+          <div id="contact-form-inner">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">First name</label>
+                <input type="text" id="cf-first" class="form-input" placeholder="Mick">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Last name</label>
+                <input type="text" id="cf-last" class="form-input" placeholder="Aceris">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <input type="email" id="cf-email" class="form-input" placeholder="you@company.com">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Company / Business</label>
+              <input type="text" id="cf-company" class="form-input" placeholder="Your business name">
+            </div>
+            <div class="form-group">
+              <label class="form-label">What are you working on?</label>
+              <select id="cf-type" class="form-select">
+                <option value="">Select one</option>
+                <option>Book AI Readiness Diagnostic</option>
+                <option>Join SLC Waitlist</option>
+                <option>AI Strategy Advisory</option>
+                <option>Custom Build Inquiry</option>
+                <option>General Enquiry</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Context (optional)</label>
+              <textarea id="cf-msg" class="form-textarea" placeholder="Brief context about your business or what you're trying to solve..."></textarea>
+            </div>
+            <div class="form-submit-row">
+              <span class="btn btn-primary" onclick="submitContactForm()">
+                <svg width="11" height="11" viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 5.5h9M5.5 1l4.5 4.5-4.5 4.5"/></svg>
+                Send message
+              </span>
+              <span class="form-note">Sent to contact@aceristechnologies.space</span>
+            </div>
+          </div>
+          <div id="form-success">
+            ✓ &nbsp;Message sent. We'll be in touch within 24 hours.<br>
+            <small style="color:var(--c-faint);font-size:11px">If you don't see a confirmation email, check your spam folder.</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<!-- ══════════ FOOTER (shared) ══════════ -->
+<footer id="site-footer">
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand">ACERIS<span class="dot">.</span></div>
+      <div class="footer-tagline">Strategy-first AI advisory for founders and business owners. Bangkok-based. Global reach.</div>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Services</div>
+      <ul>
+        <li><a onclick="goTo('services')">AI Readiness Diagnostic</a></li>
+        <li><a onclick="goTo('services')">AI Strategy Advisory</a></li>
+        <li><a onclick="goTo('products')">SLC Co-pilot Platform</a></li>
+        <li><a onclick="goTo('services')">Tailored Build</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Platform</div>
+      <ul>
+        <li><a onclick="goTo('slc')">54 Modules</a></li>
+        <li><a onclick="goTo('slc')">Stage 1 — Launchpad</a></li>
+        <li><a onclick="goTo('slc')">Stage 2 — Ops Engine</a></li>
+        <li><a onclick="openWaitlistModal()">Join Waitlist</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Company</div>
+      <ul>
+        <li><a onclick="goTo('about')">About ACERIS</a></li>
+        <li><a onclick="goTo('insights')">Insights</a></li>
+        <li><a onclick="goTo('contact')">Contact</a></li>
+        <li><a href="mailto:contact@aceristechnologies.space">Email Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 ACERIS Technologies · Bangkok, Thailand</span>
+    <span class="footer-note">Campaign: Decide. Don't Guess. — April 7, 2026</span>
+  </div>
+</footer>
+
+
+<!-- ══════════ MODULE DETAIL MODAL ══════════ -->
+<div id="module-modal-overlay" onclick="handleModalOverlayClick(event)">
+  <div id="module-modal-box">
+    <button class="modal-close" onclick="closeModuleModal()">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l10 10M11 1L1 11"/></svg>
+    </button>
+    <div class="modal-module-id" id="modal-module-id"></div>
+    <div class="modal-module-name" id="modal-module-name"></div>
+    <div class="modal-badges" id="modal-badges"></div>
+    <div class="modal-desc" id="modal-desc"></div>
+    <div class="modal-features-title">Key Capabilities</div>
+    <div class="modal-features" id="modal-features"></div>
+    <div class="modal-ideal-for">
+      <div class="modal-ideal-label">Ideal for</div>
+      <div class="modal-ideal-text" id="modal-ideal-text"></div>
+    </div>
+    <div class="modal-footer">
+      <span class="btn btn-orange btn-sm" onclick="closeModuleModal();openWaitlistModal()">Join Waitlist</span>
+      <span class="btn btn-outline btn-sm" onclick="closeModuleModal();goTo('contact')">Book Diagnostic</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════ SLC WAITLIST MODAL ══════════ -->
+<div id="waitlist-overlay" onclick="handleWaitlistOverlayClick(event)">
+  <div id="waitlist-box">
+    <button class="waitlist-close" onclick="closeWaitlistModal()">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l10 10M11 1L1 11"/></svg>
+    </button>
+    <div id="waitlist-form-inner">
+      <div style="margin-bottom:24px">
+        <div class="prod-card-tag tag-orange" style="margin-bottom:14px"><span class="prod-card-tag-dot"></span>Launching April 7, 2026</div>
+        <div style="font-family:var(--f-display);font-weight:700;font-size:26px;color:var(--c-white);line-height:1.1;margin-bottom:10px">Join the SLC Waitlist</div>
+        <div style="font-size:13.5px;color:var(--c-muted);line-height:1.7">Be notified when the Solopreneur Live Co-pilot launches. Waitlist members get first access and early diagnostic priority.</div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Name</label>
+          <input type="text" id="wl-name" class="form-input" placeholder="Your name">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input type="email" id="wl-email" class="form-input" placeholder="you@company.com">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Business type</label>
+        <select id="wl-type" class="form-select">
+          <option value="">Select one</option>
+          <option>Founder / Solopreneur</option>
+          <option>Small business owner (2–10 team)</option>
+          <option>Growing business (10–50 team)</option>
+          <option>Freelancer / Consultant</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">What's your biggest operational challenge?</label>
+        <textarea id="wl-challenge" class="form-textarea" style="min-height:70px" placeholder="e.g. Cash flow visibility, client pipeline management, too much manual work..."></textarea>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap">
+        <span class="btn btn-orange" onclick="submitWaitlistForm()">
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 5.5h9M5.5 1l4.5 4.5-4.5 4.5"/></svg>
+          Join waitlist
+        </span>
+        <span class="form-note">We'll contact you before April 7</span>
+      </div>
+    </div>
+    <div id="waitlist-success">
+      <div style="font-size:32px;margin-bottom:14px">✓</div>
+      <p>You're on the list. We'll reach out before the April 7 launch with your access details and diagnostic scheduling link.</p>
+      <small>contact@aceristechnologies.space</small>
+    </div>
+  </div>
+</div>
+
+
+<script>
+/* ═══════════════════════════════════════
+   MODULE DATA — SLC Architecture v7.0
+═══════════════════════════════════════ */
+const DOMAINS = [
+  {code:'FIN',name:'Financial Intelligence',color:'blue'},
+  {code:'DEC',name:'Decision & Strategy',color:'orange'},
+  {code:'CLP',name:'Client & Pipeline',color:'blue'},
+  {code:'OPS',name:'Operations & Automation',color:'orange'},
+  {code:'COM',name:'Content & Communication',color:'blue'},
+  {code:'PPL',name:'People & Leadership',color:'orange'},
+  {code:'DAT',name:'Data & Intelligence',color:'blue'},
+  {code:'PRD',name:'Product & Innovation',color:'orange'},
+  {code:'GRW',name:'Growth & Expansion',color:'blue'}
+];
+
+const MODULES = [
+  // FIN
+  {id:'M01',domain:'FIN',stage:1,name:'Financial Clarity Dashboard',teaser:'Real-time financial position for decisions, not just reporting.',desc:'Transforms your financial data into a live decision layer. Track cash position, burn rate, and runway in one view — updated automatically from your inputs. Built for founders who are managing from memory.',features:['Cash position & runway tracker','Revenue vs. expense heatmap','Monthly financial health score','Alert triggers for critical thresholds'],ideal:'Founders managing cash manually or relying on quarterly accountant reports.'},
+  {id:'M02',domain:'FIN',stage:1,name:'Cash Flow Forecaster',teaser:'13-week rolling cash forecast, auto-updated from your operations.',desc:'Projects your cash position 13 weeks out, accounting for known commitments and probable revenue. Flags shortfalls before they become crises — not after.',features:['13-week rolling forecast','Scenario modeling (optimistic / base / stress)','Invoice timing impact analysis','Automated variance alerts'],ideal:'Businesses with irregular revenue or tight cash windows.'},
+  {id:'M03',domain:'FIN',stage:2,name:'Revenue Modelling Engine',teaser:'Build, test, and stress-test your revenue model against real data.',desc:'Creates a dynamic revenue model from your actual pricing, conversion rates, and sales cycles. Run scenarios before you commit to decisions that are hard to reverse.',features:['Pricing sensitivity analysis','Cohort-based revenue projection','Churn impact modeling','Seasonal adjustment layer'],ideal:'Founders preparing for funding rounds or pricing strategy shifts.'},
+  {id:'M04',domain:'FIN',stage:2,name:'P&L Optimizer',teaser:'Identify margin leaks and cost structures silently killing profitability.',desc:'Analyzes your P&L at the line-item level to surface gross margin drag, SG&A bloat, and hidden cost concentrations you likely are not tracking today.',features:['Contribution margin breakdown','Department-level cost analysis','Benchmark vs. industry norms','Optimization recommendation report'],ideal:'Growing businesses where costs are scaling faster than revenue.'},
+  {id:'M05',domain:'FIN',stage:2,name:'Investment Scenario Planner',teaser:'Model the ROI of any investment before you make it.',desc:'Stress-tests capital allocation decisions — hiring, equipment, marketing spend, or product bets — against your actual financial constraints before you commit.',features:['NPV and payback period modeling','Risk-weighted scenario comparison','Opportunity cost quantification','Board-ready output format'],ideal:'Founders evaluating major capital deployment decisions.'},
+  {id:'M06',domain:'FIN',stage:2,name:'Budget Variance Tracker',teaser:'Know instantly when actuals deviate from plan — and why.',desc:'Monitors budget adherence in real time, categorizes variances by type and severity, and generates weekly management reports without manual effort.',features:['Automated budget vs. actual comparison','Variance categorization (one-time vs. structural)','Trend identification across quarters','Weekly summary report generator'],ideal:'Teams running budgets manually in spreadsheets with frequent overruns.'},
+  // DEC
+  {id:'M07',domain:'DEC',stage:1,name:'Decision Engine',teaser:'Structure any decision in minutes. Remove gut-feel, add clarity.',desc:'Guides you through a structured decision framework — defining criteria, weighting options, and surfacing the logic behind your choice so you can defend it and learn from it.',features:['Weighted criteria matrix','Multi-option comparison','Decision rationale documentation','Historical decision log'],ideal:'Founders who make consequential decisions fast and often regret them later.'},
+  {id:'M08',domain:'DEC',stage:1,name:'Priority Matrix',teaser:'Stop guessing what to do next. Rank by impact, effort, and timing.',desc:'Continuously ranks your active initiatives against a configurable impact/effort/urgency model — so the right priorities are always visible, not buried in a to-do list.',features:['Dynamic impact vs. effort scoring','Urgency decay modeling','Weekly priority rebalancing','Team alignment export'],ideal:'Founders and operators juggling more priorities than bandwidth.'},
+  {id:'M09',domain:'DEC',stage:2,name:'Scenario Simulator',teaser:'Run "what if" scenarios against your business model before acting.',desc:'Simulates the downstream effects of strategic choices — pricing changes, market pivots, team restructures — against your actual operations data before you commit.',features:['Multi-variable scenario modeling','Probability-weighted outcome distributions','Historical pattern matching','Decision trigger thresholds'],ideal:'Leaders making high-stakes strategic decisions under uncertainty.'},
+  {id:'M10',domain:'DEC',stage:2,name:'Competitive Intelligence',teaser:'Track what competitors are doing before it affects your position.',desc:'Aggregates and analyzes competitor signals — pricing, messaging, hiring, product updates — into a weekly intelligence brief configured to your market.',features:['Competitor signal aggregation','Positioning gap analysis','Threat and opportunity tagging','Monthly competitive landscape report'],ideal:'Businesses in competitive markets where positioning decisions compound over time.'},
+  {id:'M11',domain:'DEC',stage:2,name:'Market Signal Monitor',teaser:'See market shifts before they hit your revenue.',desc:'Monitors your target market for demand signals, regulatory changes, and buyer behavior shifts — filtered to what actually affects your specific business.',features:['Industry signal filtering','Demand trend tracking','Regulatory change alerts','Quarterly market report'],ideal:'Founders who feel reactive to market changes rather than prepared for them.'},
+  {id:'M12',domain:'DEC',stage:2,name:'Strategic Roadmap Builder',teaser:'Turn strategic decisions into a living, prioritized execution roadmap.',desc:'Converts your strategic priorities into a time-horizoned roadmap with dependencies, owners, and progress tracking — updated as decisions evolve, not filed away.',features:['90-day / 12-month horizon view','Dependency mapping','Initiative ownership assignment','Progress vs. strategy alignment check'],ideal:'Leadership teams who need alignment between strategy and weekly execution.'},
+  // CLP
+  {id:'M13',domain:'CLP',stage:1,name:'Client Pipeline Manager',teaser:'Your complete commercial pipeline — visible, stageable, actionable.',desc:'Manages your sales pipeline from first contact to close with automatic stage progression, follow-up triggers, and conversion rate tracking built for founders doing their own BD.',features:['Visual pipeline board','Stage-based follow-up automations','Conversion rate by stage','Revenue pipeline value tracker'],ideal:'Founders doing their own business development with no CRM or a neglected one.'},
+  {id:'M14',domain:'CLP',stage:1,name:'Proposal Generator',teaser:'Write and send tailored proposals in minutes, not hours.',desc:'Generates customized proposals from your service offerings and client context, formatted consistently and tracked for client engagement from first open to response.',features:['Template-based proposal builder','Client-specific customization layer','Open rate and engagement tracking','Version control and approval workflow'],ideal:'Service businesses spending too much time on proposal creation for inconsistent results.'},
+  {id:'M15',domain:'CLP',stage:2,name:'CRM Intelligence Layer',teaser:'Make your CRM data actually useful for decisions.',desc:'Overlays intelligence on your CRM data — relationship strength scores, engagement trends, and deal health signals — going well beyond basic pipeline management.',features:['Relationship strength scoring','Engagement pattern analysis','Deal risk flagging','Stakeholder map per account'],ideal:'Teams with existing CRM data that is not being used for strategic decisions.'},
+  {id:'M16',domain:'CLP',stage:2,name:'Lead Scoring Engine',teaser:'Know which leads are worth your time before you spend it.',desc:'Scores inbound and outbound leads against your ideal client profile using behavioral, firmographic, and engagement signals configured to your specific business.',features:['ICP-based scoring model','Behavioral signal weighting','Automatic lead tier assignment','Routing rules by score band'],ideal:'Businesses with enough lead volume that prioritization has become a bottleneck.'},
+  {id:'M17',domain:'CLP',stage:2,name:'Client Health Monitor',teaser:'Detect churn risk before it becomes a resignation letter.',desc:'Tracks client engagement, satisfaction signals, and relationship health indicators to flag at-risk accounts before they become lost ones — with recommended interventions.',features:['Health score per client account','Engagement trend monitoring','Churn risk predictor','Intervention recommendation engine'],ideal:'Service businesses where client retention is the primary growth lever.'},
+  {id:'M18',domain:'CLP',stage:2,name:'Renewal & Upsell Trigger',teaser:'Never miss a renewal window or upsell moment again.',desc:'Identifies the optimal timing and framing for renewal conversations and expansion opportunities based on client behavior and contract data — automatically.',features:['Renewal date forecasting','Expansion readiness scoring','Upsell trigger conditions','Automated outreach sequencing'],ideal:'Subscription and retainer businesses where timing drives revenue outcomes.'},
+  // OPS
+  {id:'M19',domain:'OPS',stage:1,name:'Ops Automation Hub',teaser:'Your central command for repetitive operations that should not require you.',desc:'Identifies and automates your top 5–10 most repetitive operational tasks — from reporting to approvals to data entry — freeing founder time for decisions that actually need judgment.',features:['Automation opportunity scanner','Workflow trigger builder','Task handoff automations','Time-saved tracking dashboard'],ideal:'Founders spending 20%+ of their week on tasks that recur identically every time.'},
+  {id:'M20',domain:'OPS',stage:1,name:'Workflow Builder',teaser:'Design, document, and automate any business process.',desc:'Creates visual workflow maps of your key processes, identifies bottlenecks, and builds automated routing for tasks and approvals — replacing informal processes that break at scale.',features:['Visual workflow designer','Bottleneck identification layer','Approval routing automations','Process performance metrics'],ideal:'Growing businesses where informal processes are breaking down at scale.'},
+  {id:'M21',domain:'OPS',stage:2,name:'SOP Generator',teaser:'Turn how you actually operate into documented, reusable SOPs.',desc:'Captures your existing processes through a structured interview and generates clean standard operating procedures ready for team use — removing founder as single point of knowledge.',features:['Process interview framework','SOP template library','Version control for procedures','Team acknowledgment tracking'],ideal:'Founders whose knowledge is a bottleneck because nothing is written down.'},
+  {id:'M22',domain:'OPS',stage:2,name:'Process Bottleneck Finder',teaser:'Find exactly where time, money, and decisions are getting stuck.',desc:'Analyzes your operational data to pinpoint the specific steps in your workflows where delays, errors, and rework concentrate — so you fix the right thing.',features:['Cycle time analysis by process step','Error and rework rate tracking','Constraint identification algorithm','Remediation priority ranking'],ideal:'Operations leaders who know something is wrong but cannot locate the source.'},
+  {id:'M23',domain:'OPS',stage:2,name:'Vendor Management Module',teaser:'Track, evaluate, and optimize every supplier relationship in one place.',desc:'Centralizes vendor contracts, performance data, and relationship health — and flags when vendor risk or cost inefficiency requires attention before it creates a problem.',features:['Vendor performance scorecard','Contract and renewal tracking','Cost benchmarking layer','Risk concentration alerts'],ideal:'Businesses with 5+ active vendors where procurement has become reactive.'},
+  {id:'M24',domain:'OPS',stage:2,name:'Resource Allocation Engine',teaser:'Allocate people and budget to work that moves the needle.',desc:'Models your resource constraints against current priorities and recommends reallocation to maximize output per unit of capacity — replacing gut-feel staffing decisions.',features:['Capacity vs. demand modeling','Resource utilization tracker','Reallocation scenario builder','Team throughput analytics'],ideal:'Teams where the right people are consistently assigned to the wrong priorities.'},
+  // COM
+  {id:'M25',domain:'COM',stage:1,name:'Content Strategy Engine',teaser:"A content strategy connected to your commercial goals, not just your calendar.",desc:'Builds a content calendar and messaging framework from your business objectives, audience profile, and competitive positioning — so content creates pipeline, not just impressions.',features:['Audience-to-content mapping','Topic pillar framework','Monthly content calendar','Performance-to-strategy alignment tracker'],ideal:'Founders producing content that gets engagement but does not generate leads.'},
+  {id:'M26',domain:'COM',stage:1,name:'Brand Voice Manager',teaser:'Your brand voice — documented, consistent, scalable across any channel.',desc:"Captures and codifies your brand voice with examples, rules, and guidelines that any team member or AI tool can apply consistently. Stops 'sounds different' from every output.",features:['Voice attribute documentation','Tone spectrum by context','Do/don\'t example library','Brand consistency audit tool'],ideal:'Businesses where communication quality varies because voice is in someone\'s head.'},
+  {id:'M27',domain:'COM',stage:2,name:'Multi-Channel Publisher',teaser:'Write once, distribute correctly across every channel.',desc:'Adapts a single content piece for platform-specific formatting, audience expectations, and timing across LinkedIn, Instagram, email, and more — without rewriting from scratch.',features:['Platform-specific content transformation','Scheduling and timing optimization','Channel performance comparison','Cross-channel content calendar'],ideal:'Founders active on one channel and neglecting everything else.'},
+  {id:'M28',domain:'COM',stage:2,name:'Audience Intelligence',teaser:"Know exactly who you're talking to and what they actually respond to.",desc:'Builds a data-driven audience profile from your engagement history, identifying the segments, topics, and formats that drive real business outcomes — not just vanity metrics.',features:['Engagement pattern analysis','High-value audience segment identification','Content performance by persona','Messaging effectiveness scoring'],ideal:'Content producers optimizing for metrics that do not convert to revenue.'},
+  {id:'M29',domain:'COM',stage:2,name:'Email Sequence Builder',teaser:'Build email sequences that convert — not just automated noise.',desc:'Designs and writes end-to-end email sequences for lead nurture, onboarding, or re-engagement — tied to behavior triggers and optimized by outcome, not open rate alone.',features:['Sequence architecture designer','Trigger-based email routing','Subject line and copy optimization','Conversion rate attribution'],ideal:'Businesses with an email list that is not being used as a commercial channel.'},
+  {id:'M30',domain:'COM',stage:2,name:'Engagement Analytics',teaser:'See which content investments are paying off and which are wasting time.',desc:'Connects content performance data to business outcomes — lead generation, pipeline contribution, and brand authority — not just the vanity metrics most dashboards show.',features:['Content-to-pipeline attribution','Channel ROI comparison','Audience growth vs. engagement quality','Monthly performance summary'],ideal:'Teams tracking content activity but not measuring content contribution to revenue.'},
+  // PPL
+  {id:'M31',domain:'PPL',stage:2,name:'Talent Acquisition Module',teaser:'Hire the right people faster with less process and less risk.',desc:'Structures your hiring process from role definition to offer stage — with scoring criteria, interview frameworks, and bias-reduction tools built in to every decision point.',features:['Role definition and scorecard builder','Structured interview framework','Candidate evaluation matrix','Hiring decision documentation'],ideal:'Founders making critical hires without a structured process to fall back on.'},
+  {id:'M32',domain:'PPL',stage:2,name:'Team Performance Tracker',teaser:"See who's thriving, who's stuck, and why — before it becomes a problem.",desc:'Tracks individual and team performance against objectives, engagement signals, and workload data — and surfaces conversations worth having before they become urgent.',features:['OKR and goal progress tracking','Workload balance monitoring','Engagement signal detection','Manager action trigger alerts'],ideal:'Team leads managing distributed or growing teams where visibility is limited.'},
+  {id:'M33',domain:'PPL',stage:2,name:'Leadership Communication',teaser:'Communicate with clarity, consistency, and impact at every level.',desc:'Provides frameworks and drafts for high-stakes leadership communication — all-hands messages, difficult conversations, strategic announcements — tailored to your voice and context.',features:['Message structure frameworks','Audience-calibrated tone guidance','Communication impact preview','Message history and version log'],ideal:'Leaders who know what they want to say but struggle to land it as intended.'},
+  {id:'M34',domain:'PPL',stage:2,name:'Culture Index',teaser:"Measure and shape the culture you're actually building — not the one in your deck.",desc:'Surfaces cultural health signals from team behavior, communication patterns, and engagement data — with benchmarks and recommendations to close the gap.',features:['Culture health score by dimension','Communication pattern analysis','Team sentiment trends','Culture gap vs. stated values report'],ideal:'Founders scaling a team who want culture to be a competitive advantage, not an afterthought.'},
+  {id:'M35',domain:'PPL',stage:2,name:'Hiring Scorecard',teaser:'Every hire evaluated against the same rigorous criteria.',desc:'Generates role-specific evaluation scorecards that calibrate interviewers, reduce bias, and create an audit trail for every hiring decision — making patterns visible over time.',features:['Competency-based scoring templates','Inter-rater reliability tracking','Bias flag detection','Debrief facilitation framework'],ideal:'Businesses where hiring quality is inconsistent because evaluation criteria vary by interviewer.'},
+  {id:'M36',domain:'PPL',stage:2,name:'Onboarding Automator',teaser:'New hires become productive contributors in half the time.',desc:'Creates a structured, automated onboarding experience — role-specific learning paths, day-one checklists, and progress checkpoints — delivered without manual coordination effort.',features:['Role-specific onboarding paths','Day 1 / 30 / 60 / 90 milestone framework','Progress tracking dashboard','Automated check-in sequences'],ideal:'Fast-growing teams where onboarding quality is degrading as headcount increases.'},
+  // DAT
+  {id:'M37',domain:'DAT',stage:1,name:'Business Data Dashboard',teaser:'One view of every number that matters for running your business.',desc:'Consolidates your key business metrics — financial, commercial, operational — into a single executive dashboard updated from your live data sources. Replaces the chaos of checking 8 places.',features:['Cross-function metric aggregation','Executive summary view','Daily / weekly / monthly cadence views','Threshold-based alerting'],ideal:'Founders managing from memory because their data lives in too many disconnected places.'},
+  {id:'M38',domain:'DAT',stage:1,name:'KPI Intelligence Layer',teaser:'Your KPIs explained — not just reported.',desc:'Tracks your core KPIs over time and adds an intelligence layer that explains movements, surfaces correlations, and flags anomalies before they become problems requiring explanation.',features:['KPI trend analysis','Root cause attribution engine','Leading vs. lagging indicator framework','Weekly KPI narrative report'],ideal:'Leadership teams who review metrics weekly but struggle to determine what is actually driving them.'},
+  {id:'M39',domain:'DAT',stage:2,name:'Anomaly Detector',teaser:'Catch the unexpected before it costs you.',desc:'Monitors your operational and financial data streams for statistical anomalies — unexpected drops, unusual spikes, pattern breaks — and alerts you with context, not just noise.',features:['Real-time anomaly detection','Statistical significance scoring','Contextual alert system','Historical pattern comparison'],ideal:'Data-heavy businesses where manual review cannot scale to catch every signal.'},
+  {id:'M40',domain:'DAT',stage:2,name:'Predictive Insights',teaser:"See where your business is heading, not just where it's been.",desc:'Applies predictive modeling to your historical business data to forecast demand, churn, revenue, and operational load — with confidence intervals and plain-language explanation.',features:['Demand forecasting model','Churn probability scoring','Revenue prediction engine','Confidence interval visualization'],ideal:'Businesses making planning decisions that are consistently undermined by inaccurate forecasts.'},
+  {id:'M41',domain:'DAT',stage:2,name:'Competitor Benchmarking',teaser:'Know exactly where you stand relative to the market.',desc:'Builds a structured benchmark of your key metrics against industry peers and relevant competitors — updated quarterly with new data and flagging where gaps are widening or closing.',features:['Industry metric benchmark database','Performance gap analysis','Quartile ranking by metric','Benchmark trend tracking'],ideal:'Founders who need external reference points to calibrate internal performance targets.'},
+  {id:'M42',domain:'DAT',stage:2,name:'Report Automation',teaser:'Every report your business needs — generated on time, every time, without you.',desc:'Builds automated report templates for your board, investors, clients, or team — pulling from live data and delivered on schedule without manual compilation effort.',features:['Report template builder','Data source integration','Automated delivery scheduling','Recipient-specific view access'],ideal:'Businesses spending hours each week manually compiling reports from multiple data sources.'},
+  // PRD
+  {id:'M43',domain:'PRD',stage:2,name:'Product Roadmap Builder',teaser:'A roadmap that actually reflects your strategy and constraints.',desc:'Translates your strategic priorities and resource constraints into a realistic product roadmap — with dependency tracking and stakeholder views that survive contact with reality.',features:['Initiative prioritization framework','Resource constraint modeling','Dependency mapping','Stakeholder roadmap view generator'],ideal:"Product teams whose roadmaps are feature lists, not strategic plans."},
+  {id:'M44',domain:'PRD',stage:2,name:'User Feedback Synthesizer',teaser:'Turn scattered user feedback into clear product direction.',desc:'Aggregates, categorizes, and synthesizes user feedback from support tickets, surveys, and conversations into actionable insights for product decisions — at any volume.',features:['Multi-source feedback aggregation','Theme clustering algorithm','Impact-weighted synthesis','Product decision recommendation'],ideal:'Product managers drowning in feedback with no time to synthesize it properly.'},
+  {id:'M45',domain:'PRD',stage:2,name:'Feature Prioritizer',teaser:'Decide what to build next with clarity and confidence.',desc:'Scores potential features against a multi-criteria framework (strategic fit, user demand, revenue impact, effort) to generate an evidence-based build queue — not a popularity contest.',features:['Multi-criteria scoring matrix','Strategic alignment weighting','Effort estimation integration','Priority justification documentation'],ideal:'Teams where feature prioritization is driven by who asks loudest, not what creates most value.'},
+  {id:'M46',domain:'PRD',stage:2,name:'Innovation Pipeline',teaser:'Capture, qualify, and develop your best ideas into real opportunities.',desc:'Creates a structured pipeline for new ideas — from initial capture through feasibility, validation, and commitment — so good ideas are not lost between meetings.',features:['Idea capture and tagging system','Feasibility scoring framework','Stage-gate progression model','Innovation portfolio view'],ideal:'Organizations where ideas get discussed but rarely developed into actionable initiatives.'},
+  {id:'M47',domain:'PRD',stage:2,name:'Tech Stack Advisor',teaser:'Know if your technology is an asset or a liability.',desc:'Audits your current tech stack against your operational needs, identifying redundancies, gaps, and upgrade priorities by cost and impact — before subscriptions compound further.',features:['Tech stack audit framework','Cost vs. value mapping','Integration gap analysis','Upgrade priority matrix'],ideal:'Founders who have accumulated tools organically and suspect they are paying for the wrong things.'},
+  {id:'M48',domain:'PRD',stage:2,name:'MVP Scoping Tool',teaser:'Define the smallest version that validates the right hypothesis.',desc:'Guides you through an MVP scoping framework that separates must-haves from nice-to-haves and ties feature decisions to the specific hypothesis you are testing.',features:['Hypothesis definition framework','Must-have vs. nice-to-have filter','Validation success criteria builder','Go / no-go decision checkpoint'],ideal:'Founders about to build something who want to avoid building the wrong thing.'},
+  // GRW
+  {id:'M49',domain:'GRW',stage:2,name:'Growth Strategy Planner',teaser:'Build a growth strategy that fits your actual constraints.',desc:'Develops a growth strategy from your current market position, resource constraints, and commercial data — not a generic framework applied to your logo and industry.',features:['Growth lever prioritization','Customer acquisition cost modeling','Retention vs. acquisition balance','90-day growth execution plan'],ideal:'Founders at an inflection point who need a clear direction, not more options.'},
+  {id:'M50',domain:'GRW',stage:2,name:'Channel Mix Optimizer',teaser:'Find the 20% of channels doing 80% of your growth.',desc:'Analyzes your current channel performance, cost efficiency, and strategic fit to recommend the optimal allocation of growth investment — and what to stop spending on.',features:['Channel ROI comparison','Attribution modeling','Saturation point forecasting','Investment reallocation recommendation'],ideal:'Marketing teams spending on multiple channels with unclear contribution from each.'},
+  {id:'M51',domain:'GRW',stage:2,name:'Partnership Intelligence',teaser:'Find and qualify the partnerships that actually accelerate growth.',desc:'Identifies, scores, and structures partnership opportunities based on strategic fit, audience overlap, and commercial upside — turning a fuzzy opportunity into a qualified one.',features:['Partnership opportunity scanner','Fit scoring matrix','Deal structure templates','Partnership performance tracker'],ideal:'Businesses for whom strategic partnerships are a known growth lever but hard to execute well.'},
+  {id:'M52',domain:'GRW',stage:2,name:'Pricing Strategy Engine',teaser:'Price on value, not on guesswork.',desc:'Models the impact of pricing changes across your product or service lines — incorporating willingness to pay, competitive positioning, and revenue optimization for your specific context.',features:['Value-based pricing model','Competitive price positioning map','Revenue impact simulator','Price change execution guide'],ideal:'Businesses that have never formally reviewed pricing and are likely leaving margin on the table.'},
+  {id:'M53',domain:'GRW',stage:2,name:'Market Expansion Advisor',teaser:'Know which markets to enter, when, and how.',desc:'Evaluates geographic or segment expansion opportunities against your current capabilities, risk appetite, and strategic objectives — before you commit resources.',features:['Market attractiveness scoring','Entry barrier analysis','Expansion readiness assessment','Phased market entry planning'],ideal:'Businesses considering expansion but unsure whether the opportunity justifies the complexity.'},
+  {id:'M54',domain:'GRW',stage:2,name:'Exit & Succession Planner',teaser:"Build a business that's valuable to someone else, not just to you.",desc:'Structures your exit or succession plan — from valuation optimization through transition readiness — so you are never caught unprepared by a buyer, partner, or circumstance.',features:['Business valuation framework','Key person dependency audit','Buyer-readiness checklist','Transition timeline planner'],ideal:'Founders who know exit planning matters but have put it off because it feels premature.'}
+];
+
+/* ═══════════════════════════════════════
+   SPA ROUTER
+═══════════════════════════════════════ */
+const PAGES = ['home','services','products','slc','about','insights','contact'];
+
+function goTo(pageId) {
+  if (!PAGES.includes(pageId)) pageId = 'home';
+  // Hide all pages
+  PAGES.forEach(p => {
+    const el = document.getElementById('page-' + p);
+    if (el) { el.classList.remove('active'); }
+  });
+  // Show target page
+  const target = document.getElementById('page-' + pageId);
+  if (target) {
+    target.classList.add('active');
+    window.scrollTo({top:0, behavior:'instant'});
+  }
+  // Update nav active states
+  document.querySelectorAll('[data-page]').forEach(link => {
+    link.classList.toggle('active', link.dataset.page === pageId);
+  });
+  // Update hash without triggering hashchange
+  history.pushState(null, '', '#' + pageId);
+  // Page-specific init
+  if (pageId === 'slc') buildSlcGrid();
+  if (pageId === 'products') buildChipsPreview();
+}
+
+window.addEventListener('popstate', () => {
+  const hash = window.location.hash.slice(1) || 'home';
+  goTo(PAGES.includes(hash) ? hash : 'home');
+});
+
+window.addEventListener('load', () => {
+  buildChipsPreview();
+  const hash = window.location.hash.slice(1) || 'home';
+  goTo(PAGES.includes(hash) ? hash : 'home');
+});
+
+/* ═══════════════════════════════════════
+   BUILD SLC CHIPS PREVIEW (products page)
+═══════════════════════════════════════ */
+function buildChipsPreview() {
+  const container = document.getElementById('slc-chips-preview');
+  if (!container || container.dataset.built) return;
+  container.dataset.built = '1';
+
+  const featured = ['M01','M07','M13','M25','M37','M19','M03'];
+  const html = featured.map(id => {
+    const m = MODULES.find(x => x.id === id);
+    if (!m) return '';
+    return `<span class="slc-chip" onclick="openModuleModal('${m.id}')">${m.name}</span>`;
+  }).join('') + `<span class="slc-chip slc-chip-more" onclick="goTo('slc')">+47 more modules →</span>`;
+  container.innerHTML = html;
+}
+
+/* ═══════════════════════════════════════
+   BUILD SLC DOMAIN GRID
+═══════════════════════════════════════ */
+let slcBuilt = false;
+function buildSlcGrid() {
+  if (slcBuilt) return;
+  slcBuilt = true;
+  const container = document.getElementById('slc-domain-grid');
+  if (!container) return;
+
+  let html = '';
+  DOMAINS.forEach((domain, i) => {
+    const domainModules = MODULES.filter(m => m.domain === domain.code);
+    const accentColor = domain.color === 'orange' ? 'var(--c-orange)' : 'var(--c-blue-light)';
+    html += `<div class="domain-section">
+      <div class="domain-header">
+        <span class="domain-code">${domain.code}</span>
+        <span class="domain-name" style="color:${accentColor}">${domain.name}</span>
+        <span class="domain-count">${domainModules.length} modules</span>
+      </div>
+      <div class="modules-grid">
+        ${domainModules.map(m => `
+          <div class="module-card" onclick="openModuleModal('${m.id}')">
+            <div class="module-card-top">
+              <span class="module-id">${m.id}</span>
+              <span class="stage-badge ${m.stage === 1 ? 'stage-1-badge' : 'stage-2-badge'}">S${m.stage}</span>
+            </div>
+            <div class="module-name">${m.name}</div>
+            <div class="module-teaser">${m.teaser}</div>
+            <svg class="module-card-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 7h10M7 2l5 5-5 5"/></svg>
+          </div>
+        `).join('')}
+      </div>
+    </div>`;
+  });
+  container.innerHTML = html;
+}
+
+/* ═══════════════════════════════════════
+   MODULE MODAL
+═══════════════════════════════════════ */
+function openModuleModal(moduleId) {
+  const m = MODULES.find(x => x.id === moduleId);
+  if (!m) return;
+  const domain = DOMAINS.find(d => d.code === m.domain);
+  const accentColor = domain && domain.color === 'orange' ? 'var(--c-orange)' : 'var(--c-blue-light)';
+
+  document.getElementById('modal-module-id').textContent = m.id + ' · ' + (domain ? domain.name : m.domain);
+  document.getElementById('modal-module-name').textContent = m.name;
+  document.getElementById('modal-desc').textContent = m.desc;
+  document.getElementById('modal-ideal-text').textContent = m.ideal;
+
+  document.getElementById('modal-badges').innerHTML =
+    `<span class="stage-badge ${m.stage===1?'stage-1-badge':'stage-2-badge'}" style="font-size:9px;padding:4px 10px">Stage ${m.stage === 1 ? '1 — Launchpad' : '2 — Ops Engine'}</span>
+     <span class="slc-stage-badge" style="font-size:9px;padding:4px 10px;background:transparent;border:1px solid var(--c-border);color:${accentColor}">${domain ? domain.name : m.domain}</span>`;
+
+  document.getElementById('modal-features').innerHTML =
+    m.features.map(f => `<div class="modal-feature">${f}</div>`).join('');
+
+  document.getElementById('module-modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModuleModal() {
+  document.getElementById('module-modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function handleModalOverlayClick(e) {
+  if (e.target === document.getElementById('module-modal-overlay')) closeModuleModal();
+}
+
+/* ═══════════════════════════════════════
+   WAITLIST MODAL
+═══════════════════════════════════════ */
+function openWaitlistModal() {
+  document.getElementById('waitlist-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeWaitlistModal() {
+  document.getElementById('waitlist-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function handleWaitlistOverlayClick(e) {
+  if (e.target === document.getElementById('waitlist-overlay')) closeWaitlistModal();
+}
+
+function submitWaitlistForm() {
+  const name = document.getElementById('wl-name').value.trim();
+  const email = document.getElementById('wl-email').value.trim();
+  const type = document.getElementById('wl-type').value;
+  const challenge = document.getElementById('wl-challenge').value.trim();
+  if (!name || !email) { alert('Please enter your name and email.'); return; }
+
+  const subject = encodeURIComponent('SLC Waitlist — ' + name);
+  const body = encodeURIComponent(
+    'SLC WAITLIST REQUEST\n\n' +
+    'Name: ' + name + '\n' +
+    'Email: ' + email + '\n' +
+    'Business type: ' + (type || 'Not specified') + '\n' +
+    'Biggest challenge: ' + (challenge || 'Not provided') + '\n\n' +
+    '---\nSent from aceristechnologies.space'
+  );
+  window.location.href = 'mailto:contact@aceristechnologies.space?subject=' + subject + '&body=' + body;
+
+  document.getElementById('waitlist-form-inner').style.display = 'none';
+  document.getElementById('waitlist-success').style.display = 'block';
+}
+
+/* ═══════════════════════════════════════
+   CONTACT FORM
+═══════════════════════════════════════ */
+function submitContactForm() {
+  const first = document.getElementById('cf-first').value.trim();
+  const last = document.getElementById('cf-last').value.trim();
+  const email = document.getElementById('cf-email').value.trim();
+  const company = document.getElementById('cf-company').value.trim();
+  const type = document.getElementById('cf-type').value;
+  const msg = document.getElementById('cf-msg').value.trim();
+  if (!first || !email) { alert('Please enter your name and email.'); return; }
+
+  const subject = encodeURIComponent('ACERIS Enquiry — ' + first + ' ' + last);
+  const body = encodeURIComponent(
+    'CONTACT FORM SUBMISSION\n\n' +
+    'Name: ' + first + ' ' + last + '\n' +
+    'Email: ' + email + '\n' +
+    'Company: ' + (company || 'Not provided') + '\n' +
+    'Enquiry type: ' + (type || 'Not specified') + '\n' +
+    'Message: ' + (msg || 'No message provided') + '\n\n' +
+    '---\nSent from aceristechnologies.space'
+  );
+  window.location.href = 'mailto:contact@aceristechnologies.space?subject=' + subject + '&body=' + body;
+
+  document.getElementById('contact-form-inner').style.display = 'none';
+  document.getElementById('form-success').style.display = 'block';
+}
+
+/* Keyboard: Escape to close modals */
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    closeModuleModal();
+    closeWaitlistModal();
+  }
+});
+</script>
+</body>
+</html>
