@@ -312,6 +312,19 @@ footer{background:var(--c-navy-2);border-top:1px solid var(--c-border);padding:4
 #waitlist-success p{font-size:15px;color:var(--c-text);line-height:1.7;margin-bottom:8px}
 #waitlist-success small{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--c-faint)}
 
+/* ── MOBILE NAV DRAWER ── */
+#mobile-nav{display:none;position:fixed;top:62px;left:0;right:0;z-index:199;background:rgba(19,20,30,.97);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--c-border);padding:8px 24px 20px}
+#mobile-nav.open{display:block;animation:fadeIn .2s ease}
+#mobile-nav ul{list-style:none}
+#mobile-nav ul li a{display:block;padding:14px 0;font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--c-muted);border-bottom:1px solid var(--c-border);cursor:pointer;transition:color .15s}
+#mobile-nav ul li:last-child a{border-bottom:none}
+#mobile-nav ul li a:hover{color:var(--c-text)}
+#mobile-nav ul li a.active{color:var(--c-blue-light);border-bottom-color:var(--c-blue-border)}
+#mobile-nav-cta{padding:16px 0 4px;border-top:1px solid var(--c-border);margin-top:4px}
+.nav-burger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.nav-burger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.nav-burger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+
 /* ── RESPONSIVE ── */
 @media(max-width:900px){
   #nav{padding:0 24px}
@@ -359,6 +372,22 @@ footer{background:var(--c-navy-2);border-top:1px solid var(--c-border);padding:4
     </button>
   </div>
 </nav>
+
+<!-- ══════════ MOBILE NAV DRAWER ══════════ -->
+<div id="mobile-nav">
+  <ul>
+    <li><a data-page="home"     onclick="goTo('home')">Home</a></li>
+    <li><a data-page="services" onclick="goTo('services')">Services</a></li>
+    <li><a data-page="products" onclick="goTo('products')">Products</a></li>
+    <li><a data-page="slc"      onclick="goTo('slc')">SLC Platform</a></li>
+    <li><a data-page="about"    onclick="goTo('about')">About</a></li>
+    <li><a data-page="insights" onclick="goTo('insights')">Insights</a></li>
+    <li><a data-page="contact"  onclick="goTo('contact')">Contact</a></li>
+  </ul>
+  <div id="mobile-nav-cta">
+    <span class="nav-book" onclick="goTo('contact')">Book Diagnostic</span>
+  </div>
+</div>
 
 <!-- ══════════ PAGE: HOME ══════════ -->
 <div id="page-home" class="page">
@@ -1103,6 +1132,7 @@ const PAGES = ['home','services','products','slc','about','insights','contact'];
 
 function goTo(pageId) {
   if (!PAGES.includes(pageId)) pageId = 'home';
+  closeMobileNav();
   // Hide all pages
   PAGES.forEach(p => {
     const el = document.getElementById('page-' + p);
@@ -1114,7 +1144,7 @@ function goTo(pageId) {
     target.classList.add('active');
     window.scrollTo({top:0, behavior:'instant'});
   }
-  // Update nav active states
+  // Update nav active states (desktop + mobile drawer)
   document.querySelectorAll('[data-page]').forEach(link => {
     link.classList.toggle('active', link.dataset.page === pageId);
   });
@@ -1123,6 +1153,18 @@ function goTo(pageId) {
   // Page-specific init
   if (pageId === 'slc') buildSlcGrid();
   if (pageId === 'products') buildChipsPreview();
+}
+
+function toggleMobileNav() {
+  const drawer = document.getElementById('mobile-nav');
+  const burger = document.querySelector('.nav-burger');
+  const isOpen = drawer.classList.toggle('open');
+  burger.classList.toggle('open', isOpen);
+}
+
+function closeMobileNav() {
+  document.getElementById('mobile-nav').classList.remove('open');
+  document.querySelector('.nav-burger').classList.remove('open');
 }
 
 window.addEventListener('popstate', () => {
